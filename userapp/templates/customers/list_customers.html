@@ -1,0 +1,81 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+
+<div class="container">
+    <div class="panel" style="background-color: #cbf7d8">
+        <div class="panel-heading">
+           <h3>Customer Details {{ customers.length }}</h3>
+           <form action='/import' method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="file"
+                        title="Upload excel file"
+                        name="excel_file"
+                        style="border: 1px solid black; padding: 5px;"
+                        required="required">
+                </div>
+                <div class="col-sm-8">    
+                    <input type="submit"
+                        value="Upload" class="btn btn-success"
+                        style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="panel-body">
+            
+            <ul class="list-group"> 
+            {% for customer in customers %}
+            <li class="list-group-item">
+            <div class="row">
+                    <div class="col-sm-4">
+                        <b>Name: {{ customer.customer_name }}</b>
+                        <br/>
+                        Father Name: {{ customer.father_name }}
+                        <br/>
+                        Customer Profile: {{ customer.customer_profile }}
+                        <br/>
+                        Loan Account Number: {{ customer.loan_account_number }}
+                    </div>
+                    <div class="col-sm-4">
+                        <b>Branch Details</b> <br/>
+                        {% for branch in customer.branch %}
+                            Zone: {{ branch.zone_name }}
+                            <br/>
+                            Region: {{ branch.region_name }}
+                            <br/>
+                            Area name: {{ branch.area_name }}
+                            <br/>
+                            Branch Name: {{ branch.branch_name }}
+                            <br/>
+                            Branch Code: {{ branch.branch_code }}
+                        {% endfor %}
+                    </div>
+                    <div class="col-sm-4">
+                        <b>Address Details</b> <br/>
+                        {% for address in customer.address %}
+                            Address1: {{ address.address1 }}
+                            <br/>
+                            Address2: {{ address.address2 }}
+                            <br/>
+                            Address3: {{ address.address3 }}
+                            <br/>
+                            Landmark: {{ address.landmark }}
+                            <br/>
+                            Pincode: {{ address.pincode }}
+                        {% endfor %}
+                    </div>
+                
+            </div>
+            </li>
+            {% endfor %}
+            </ul>
+           
+        </div>
+    </div>
+</div>
