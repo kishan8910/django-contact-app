@@ -1,4 +1,7 @@
 ### Steps to run this project
+* Create a directory for virtual environment (mkdir djangoenv)
+* Create virtual environment inside djangoenv (python3 -m venv djangoenv)
+* Activate virtual environment (source djangoenv/bin/activate)
 * Clone or download the repository
 * Run command cd django-contact-app/
 * Run command pip install -r requirements.txt
